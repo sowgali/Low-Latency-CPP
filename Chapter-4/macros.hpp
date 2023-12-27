@@ -6,7 +6,7 @@
 #include <iostream>
 #include <string>
 
-inline auto ASSERT(const bool cond, const std::string& msg) noexcept {
+inline auto ASSERT(bool cond, const std::string& msg) noexcept {
     if(!cond)[[unlikely]]{ 
         std::cerr << msg << std::endl;
         exit(EXIT_FAILURE);
