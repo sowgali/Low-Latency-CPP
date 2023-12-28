@@ -13,7 +13,7 @@ namespace Common {
             MemPool& operator=(const MemPool&) = delete;
             MemPool& operator=(const MemPool&&) = delete;
 
-            MemPool(size_t n) : pool_(std::vector<ObjBlock>(n, {T(), true})){
+            explicit MemPool(size_t n) : pool_(std::vector<ObjBlock>(n, {T(), true})){
                 ASSERT(reinterpret_cast<const ObjBlock*>(&(pool_[0].object_)) == &(pool_[0]), "Expected type T as first member of object block");
             }
 
