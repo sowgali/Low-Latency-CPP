@@ -24,3 +24,6 @@ target_link_libraries(mem_pool_example PUBLIC ${LIBS})
 
 add_executable(lf_queue_example lf_queue_example.cpp)
 target_link_libraries(lf_queue_example PUBLIC ${LIBS})
+
+add_executable(logging_example logging_example.cpp)
+target_link_libraries(logging_example PUBLIC ${LIBS})
