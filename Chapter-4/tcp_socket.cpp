@@ -1,12 +1,12 @@
 #include "tcp_socket.hpp"
 
 namespace Common {
-    auto TCPSocket::destroy() -> void{
+    auto TCPSocket::destroy() noexcept -> void{
         close(fd_);
         fd_ = -1;
     }
 
-    auto TCPSocket::connect(const std::string& ip, const std::string& iface, int port, bool is_listening) -> int {
+    auto TCPSocket::connect(const std::string& ip, const std::string& iface, int port, bool is_listening) noexcept -> int {
         const socketConfig socket_config{ip, iface, port, false, is_listening, false};
         fd_ = createSocket(logger_, socket_config);
         sock_attrib_.sin_addr.s_addr = INADDR_ANY;
@@ -15,12 +15,12 @@ namespace Common {
         return fd_;
     }
 
-    auto TCPSocket::send(const char* data, size_t len) -> void {
+    auto TCPSocket::send(const char* data, size_t len) noexcept -> void {
         memcpy(send_buffer_+next_send_valid_idx_, data, len);
         next_send_valid_idx_ += len;
     }
 
-    auto TCPSocket::sendAndRecv() -> bool {
+    auto TCPSocket::sendAndRecv() noexcept -> bool {
         char ctrl[CMSG_SPACE(sizeof(struct timeval))];
         auto cmsg = reinterpret_cast<cmsghdr*>(&ctrl);
 

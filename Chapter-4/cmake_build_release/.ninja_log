@@ -1,0 +1,27 @@
+# ninja log v5
+523	1293	1704435362811664613	CMakeFiles/libcommon.dir/tcp_socket.cpp.o	d99c008034603b5d
+446	1201	1704435362719664879	CMakeFiles/libcommon.dir/tcp_server.cpp.o	280b35a0be141430
+645	1042	1704435362563665330	CMakeFiles/libcommon.dir/thread_example.cpp.o	c5c80f2c1990c768
+1	645	1704435362163666485	CMakeFiles/libcommon.dir/logging_example.cpp.o	d5c19ce489258839
+1	523	1704435362043666832	CMakeFiles/libcommon.dir/lf_queue_example.cpp.o	c7a35fde91750686
+1	446	1704435361967667052	CMakeFiles/libcommon.dir/mem_pool_example.cpp.o	c57972bf5ea82ecb
+0	4	0	clean	a31eedcededa8236
+0	3	0	clean	a31eedcededa8236
+1	447	1704435388651589982	CMakeFiles/libcommon.dir/mem_pool_example.cpp.o	c57972bf5ea82ecb
+0	510	1704435388715589797	CMakeFiles/libcommon.dir/lf_queue_example.cpp.o	c7a35fde91750686
+1	622	1704435388827589474	CMakeFiles/libcommon.dir/logging_example.cpp.o	d5c19ce489258839
+1	932	1704435389139588573	CMakeFiles/libcommon.dir/socket_example.cpp.o	cc76bf244aa1a3e4
+622	1037	1704435389243588272	CMakeFiles/libcommon.dir/thread_example.cpp.o	c5c80f2c1990c768
+447	1221	1704435389427587741	CMakeFiles/libcommon.dir/tcp_server.cpp.o	280b35a0be141430
+510	1318	1704435389523587464	CMakeFiles/libcommon.dir/tcp_socket.cpp.o	d99c008034603b5d
+1318	1334	1704435389539587418	liblibcommon.a	b7d8f71627e56d07
+932	1334	1704435389539587418	CMakeFiles/thread_example.dir/thread_example.cpp.o	cc33bbc2afbfb498
+1334	1374	1704435389579587302	thread_example	e86227d3e3cb31f3
+1037	1459	1704435389659587071	CMakeFiles/mem_pool_example.dir/mem_pool_example.cpp.o	565fac3ade069906
+1459	1496	1704435389703586944	mem_pool_example	c4dbef9fd96e691e
+1221	1687	1704435389895586390	CMakeFiles/lf_queue_example.dir/lf_queue_example.cpp.o	7880c70f44f66041
+1687	1722	1704435389927586297	lf_queue_example	efe2fa10f6e6300
+1334	1906	1704435390111585766	CMakeFiles/logging_example.dir/logging_example.cpp.o	fdef30f2d19739c5
+1906	1937	1704435390143585674	logging_example	74c9d4e4f043235d
+1374	2192	1704435390399584934	CMakeFiles/socket_example.dir/socket_example.cpp.o	2f04defa4fb59360
+2192	2223	1704435390427584854	socket_example	b102205db3ce18ac

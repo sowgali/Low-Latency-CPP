@@ -19,10 +19,10 @@ namespace Common {
             explicit TCPSocket(Logger& logger) : logger_(logger) {
                 send_buffer_ = new char[tcpBufferSize];
                 recv_buffer_ = new char[tcpBufferSize];
-                recv_callback_ = [this] (auto tcpSocket, auto rx_time){defaultRecvCallBack(tcpSocket, rx_time);};
+                recv_callback_ = [this] (TCPSocket* tcpSocket, Nanos rx_time){defaultRecvCallBack(tcpSocket, rx_time);};
             }
 
-            explicit TCPSocket(Logger& logger, auto recvCallback) : logger_(logger), recv_callback_(recv_callback_) {
+            explicit TCPSocket(Logger& logger, auto recvCallback) : logger_(logger), recv_callback_(recvCallback) {
                 send_buffer_ = new char[tcpBufferSize];
                 recv_buffer_ = new char[tcpBufferSize];
             }
@@ -31,8 +31,24 @@ namespace Common {
                 return fd_;
             }
 
+            auto setFD(int fd) noexcept {
+                fd_ = fd;
+            }
+
             auto getNextRecvValidIdx() noexcept {
                 return next_recv_valid_idx_;
+            }
+
+            auto setNextRecvValidIdx(int recvIdx) noexcept {
+                next_recv_valid_idx_ = recvIdx;
+            }
+
+            auto getRecvBuff() noexcept {
+                return recv_buffer_;
+            }
+
+            void setRecvCallback(auto recvCallBack) noexcept {
+                recv_callback_ = recvCallBack;
             }
 
             ~TCPSocket(){
@@ -44,6 +60,18 @@ namespace Common {
                 recv_buffer_ = nullptr;
                 next_recv_valid_idx_ = 0;
             }
+
+            auto defaultRecvCallBack(TCPSocket* tcpSocket, Nanos rx_time) noexcept -> void {
+                logger_.log("% : % %() % TCPSocket::defaultRecvCallBack() socket: % len: % rx: %\n", __FILE__, __LINE__, __FUNCTION__, getCurrentTimeStr(&time_str_), tcpSocket->getFD(), tcpSocket->getNextRecvValidIdx(), rx_time);
+            }
+
+            auto destroy() noexcept -> void;
+            
+            auto connect(const std::string& ip, const std::string& iface, int port, bool is_listening) noexcept -> int;
+
+            auto sendAndRecv() noexcept -> bool;
+
+            auto send(const char* sendData, size_t len) noexcept -> void;
 
         private:
             Logger& logger_;
@@ -57,17 +85,5 @@ namespace Common {
             std::function<void(TCPSocket* tcpSocket, Nanos rx_time)> recv_callback_ = nullptr;
             struct sockaddr_in sock_attrib_;
             std::string time_str_;
-
-            auto defaultRecvCallBack(TCPSocket* tcpSocket, Nanos rx_time) noexcept {
-                logger_.log("% : % %() % TCPSocket::defaultRecvCallBack() socket: % len: % rx: %\n", __FILE__, __LINE__, __FUNCTION__, getCurrentTimeStr(&time_str_), tcpSocket->getFD(), tcpSocket->getNextRecvValidIdx(), rx_time);
-            }
-
-            auto destroy() noexcept -> void;
-            
-            auto connect(const std::string& ip, const std::string& iface, int port, bool is_listening) noexcept -> int;
-
-            auto sendAndRecv() noexcept -> bool;
-
-            auto send(const char* sendData, size_t len) noexcept -> void;
     };
 }
