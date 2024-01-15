@@ -43,7 +43,7 @@ namespace Common {
             }
 
             const auto user_time = getCurrentNanos();
-            logger_.log("% : % %() read from socket: % len: % utime: % ktime: % diff: %\n", __FILE__, __LINE__, __FUNCTION__, user_time, kernel_time, (user_time - kernel_time));
+            logger_.log("% : % %() read from socket: % len: % utime: % ktime: % diff: %\n", __FILE__, __LINE__, __FUNCTION__, fd_, read_size, user_time, kernel_time, (user_time - kernel_time));
             recv_callback_(this, kernel_time);
         }
 

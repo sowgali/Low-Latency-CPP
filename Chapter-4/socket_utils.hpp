@@ -96,10 +96,11 @@ namespace Common {
         std::string time_str;
         logger.log("% : % %() % cfg: %\n", __FILE__, __LINE__, __FUNCTION__, Common::getCurrentTimeStr(&time_str), socketConfig.toString());
 
-        const int input_flags = (socketConfig.is_listening_ ? AI_PASSIVE : 0) | AI_NUMERICHOST | AI_NUMERICHOST;
+        const auto ip = socketConfig.ip_.empty() ? getIfaceIP(socketConfig.iface_) : socketConfig.ip_;
+        const int input_flags = (socketConfig.is_listening_ ? AI_PASSIVE : 0) | AI_NUMERICHOST | AI_NUMERICSERV;
         const addrinfo hints{input_flags, AF_INET, socketConfig.is_udp_ ? SOCK_DGRAM : SOCK_STREAM, socketConfig.is_udp_ ? IPPROTO_UDP : IPPROTO_TCP, 0, 0, nullptr, nullptr};
         addrinfo* result = nullptr;
-        const auto rc = getaddrinfo(socketConfig.ip_.c_str(), std::to_string(socketConfig.port_).c_str(), &hints, &result);
+        const auto rc = getaddrinfo(ip.c_str(), std::to_string(socketConfig.port_).c_str(), &hints, &result);
         ASSERT(!rc, "getaddrinfo() failed. Error: " + std::string(gai_strerror(rc)) + " errno: " + std::string(strerror(errno)));
 
         int sockfd = -1;
