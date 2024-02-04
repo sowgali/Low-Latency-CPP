@@ -44,7 +44,7 @@ namespace Exchange {
         Qty qty_ = Qty_INVALID;
         Priority priority_ = Priority_INVALID;
 
-        auto toString() const {
+        auto toString() const -> std::string {
             std::stringstream ss;
             ss  << "MEMarketUpdateObject" << " ["
                 << " type: " << MarketUpdateTypeToString(type_)
@@ -56,7 +56,7 @@ namespace Exchange {
                 << " price: " << ToString<Price>(price_)
                 << " priority: " << ToString<Priority>(priority_)
                 << "]";
-            ss.str();
+            return ss.str();
         }
     };
 

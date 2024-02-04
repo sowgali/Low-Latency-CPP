@@ -6,7 +6,7 @@
 
 using namespace Common;
 
-namespace exchange{
+namespace Exchange{
     #pragma pack(push, 1)
 
     enum class ClientRequestType : uint8_t {
