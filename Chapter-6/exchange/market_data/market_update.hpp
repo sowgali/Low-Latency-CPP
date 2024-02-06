@@ -38,7 +38,6 @@ namespace Exchange {
         MarketUpdateType type_ = MarketUpdateType::INVALID;
         OrderId orderId_ = OrderId_INVALID;
         TickerId tickerId_ = TickerId_INVALID;
-        ClientId clientId_ = ClientId_INVALID;
         Side side_ = Side::INVALID;
         Price price_ = Price_INVALID;
         Qty qty_ = Qty_INVALID;
@@ -48,7 +47,6 @@ namespace Exchange {
             std::stringstream ss;
             ss  << "MEMarketUpdateObject" << " ["
                 << " type: " << MarketUpdateTypeToString(type_)
-                << " client: " << ToString<ClientId>(clientId_)
                 << " ticker: " << ToString<TickerId>(tickerId_)
                 << " oid: " << ToString<OrderId>(orderId_)
                 << " side: " << sideToString(side_)

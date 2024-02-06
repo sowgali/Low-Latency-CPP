@@ -3,7 +3,11 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "${workspaceFolder}",
+                "$**/{workspaceFolder}",
+                "${workspaceFolder}/Chapter-6",
+                "${workspaceFolder}/Chapter-6/exchange"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/g++",

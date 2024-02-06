@@ -40,6 +40,7 @@ namespace Exchange {
         OrderId clientOrderId_ = OrderId_INVALID;
         OrderId marketOrderId_ = OrderId_INVALID;
         Side side_ = Side::INVALID;
+        Price price_ = Price_INVALID;
         Qty executedQty_ = Qty_INVALID;
         Qty leftOverQty_ = Qty_INVALID;
 
@@ -52,7 +53,8 @@ namespace Exchange {
                 << " coid: " << ToString<OrderId>(clientOrderId_)
                 << " moid: " << ToString<OrderId>(marketOrderId_)
                 << " side: " << sideToString(side_)
-                << " exec_qty: " << ToString<Qty>(executedQty_)
+                << " price: " << ToString<Price>(price_)
+                << " exec_qty_: " << ToString<Qty>(executedQty_)
                 << " leave_qty_: " << ToString<Qty>(leftOverQty_)
                 << "]";
             return ss.str();
